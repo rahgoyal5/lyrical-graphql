@@ -8,7 +8,8 @@ const schema = require('./schema/schema');
 const app = express();
 
 // Replace with your Mongo Atlas URI
-const MONGO_URI = '';
+const MONGO_URI =
+  'mongodb+srv://rahulgoyal2:dt0pIVGjSOnMvMir@lyrical-graphiql.dqhkro7.mongodb.net/?retryWrites=true&w=majority';
 if (!MONGO_URI) {
   throw new Error('You must provide a Mongo Atlas URI');
 }
@@ -17,9 +18,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect(MONGO_URI);
 mongoose.connection
   .once('open', () => console.log('Connected to Mongo Atlas instance.'))
-  .on('error', (error) =>
-    console.log('Error connecting to Mongo Atlas:', error)
-  );
+  .on('error', (error) => console.log('Error connecting to Mongo Atlas:', error));
 
 app.use(bodyParser.json());
 app.use(
